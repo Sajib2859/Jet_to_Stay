@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AdminController;
+
+use App\Http\Controllers\HomeController;
+
 use Illuminate\Support\Facades\Auth;
 
 route::get("/", [AdminController::class,"home"]);
@@ -22,3 +25,5 @@ route::get("/delete_room/{id}", [AdminController::class,"delete_room"])->name('d
 route::get("/update_room/{id}", [AdminController::class,"update_room"])->name('update_room');
 
 route::post("/edit_room/{id}", [AdminController::class,"edit_room"])->name('edit_room');
+
+route::get("/room_details/{id}", [HomeController::class,"room_details"])->name('room_details');
