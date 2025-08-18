@@ -16,3 +16,9 @@ route::get("/create_room", [AdminController::class,"create_room"])->name('create
 route::post("/add_room", [AdminController::class,"add_room"])->name('add_room');
 
 route::get("/display_room", [AdminController::class,"display_room"])->name('display_room');
+
+route::get("/delete_room/{id}", [AdminController::class,"delete_room"])->name('delete_room');
+
+route::get("/update_room/{id}", [AdminController::class,"update_room"])->name('update_room');
+
+route::post("/edit_room/{id}", [AdminController::class,"edit_room"])->name('edit_room');

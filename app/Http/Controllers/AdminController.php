@@ -74,4 +74,60 @@ class AdminController extends Controller
         return view('admin.display_room', compact('room')); ;
     }
 
+    public function delete_room($id)
+    {
+        $room = Room::find($id);
+        if($room)
+        {
+            $room->delete();
+            return redirect()->back()->with('message', 'Room Deleted Successfully');
+        }
+        else
+        {
+            return redirect()->back()->with('error', 'Room Not Found');
+        }
+    }
+
+    public function update_room($id)
+    {
+        $room = Room::find($id);
+        if($room)
+        {
+            return view('admin.update_room', compact('room'));
+        }
+        else
+        {
+            return redirect()->back()->with('error', 'Room Not Found');
+        }
+    }
+
+    public function edit_room(Request $request, $id)
+    {
+        $room = Room::find($id);
+        if($room)
+        {
+            $room->room_title = $request->title;
+            $room->room_type = $request->type;
+            $room->wifi = $request->wifi;
+            $room->price = $request->price;
+            $room->description = $request->description;
+
+            if($request->hasFile('image'))
+            {
+                $image = $request->image;
+                $imagename = time().'.'.$image->getClientOriginalExtension();
+                $request->image->move('room', $imagename);
+                $room->image = $imagename;
+            }
+
+            $room->save();
+
+            return redirect()->back()->with('message', 'Room Updated Successfully');
+        }
+        else
+        {
+            return redirect()->back()->with('error', 'Room Not Found');
+        }
+    }
+
 }
