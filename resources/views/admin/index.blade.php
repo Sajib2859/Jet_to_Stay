@@ -6,13 +6,12 @@
   <body>
     @include('admin.header')
 
-        @include('admin.sidebar')
-      <!-- Sidebar Navigation end-->
+    @include('admin.sidebar')
       
-      @include('admin.body')
+    @include('admin.body')
         
 
-        @include('admin.footer')
+    @include('admin.footer')
 
 
   </body>

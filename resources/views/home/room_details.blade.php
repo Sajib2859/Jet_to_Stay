@@ -3,6 +3,28 @@
    <head>
     <base href="/public">
       @include('home.css')
+
+      <style type="text/css">
+         label {
+            display: inline-block;
+            width: 200px;
+            text-align: left; 
+         }
+
+         .form-control {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+         }
+
+         input
+         {
+            width: 100%;
+            padding: 8px;
+         }
+      </style>
+
    </head>
    <!-- body -->
    <body class="main-layout">
@@ -47,7 +69,65 @@
                      </div>
                   </div>
                </div>
-               
+
+               <div class="col-md-4">
+
+                  <h1 style="font-size: 40px!important;">Book Room</h1>
+
+                  @if($errors)
+
+                  @foreach($errors->all() as $errors)
+
+                  <li style="color: red; font-size: 20px; padding-left: 10px;">
+                     {{$errors}}
+                  </li>
+
+                  @endforeach
+
+                  @endif
+
+                  <form action="{{url('add_booking',$room->id)}}" method="post">
+                   @csrf
+                  
+                  <div>
+                     <label>Name</label>
+                     <input type="text" name="name" 
+                     @if(Auth::id())
+                     value="{{Auth::user()->name}}" @endif placeholder="Enter Your Name" class="form-control">
+                  </div>
+                  
+                  <div>
+                     <label>Email</label>
+                     <input type="email" name="email" 
+                     @if(Auth::id())
+                     value="{{Auth::user()->email}}" @endif
+                     placeholder="Enter Your Email" class="form-control">
+                  </div>
+                  
+                  <div>
+                     <label>Phone</label>
+                     <input type="number" name="phone" 
+                     @if(Auth::id())
+                     value="{{Auth::user()->phone}}" @endif
+                     placeholder="Enter Your Phone Number" class="form-control">
+                  </div> 
+                  
+                  <div>
+                  <label>Start Date</label>
+                     <input type="date" name="startDate" id="startDate" class="form-control">
+                  </div>
+                  
+                  <div>
+                  <label>End Date</label>
+                     <input type="date" name="endDate" id="endDate" class="form-control">
+                  </div>
+                  <div style="padding-top: 30px;">
+                     <input type="submit" value="Book Now" class="btn btn-primary">
+                  </div>
+                  
+                  </form>
+                  
+               </div>
             </div>
          </div>
       </div>
@@ -64,7 +144,7 @@
 
 
 
-
+ 
 
 
 
@@ -72,5 +152,29 @@
 
       <!--  footer -->
       @include('home.footer')
+
+   <script type="text/javascript">
+      $(function(){
+    var dtToday = new Date();
+ 
+    var month = dtToday.getMonth() + 1;
+
+    var day = dtToday.getDate();
+
+    var year = dtToday.getFullYear();
+
+    if(month < 10)
+        month = '0' + month.toString();
+
+    if(day < 10)
+     day = '0' + day.toString();
+
+    var maxDate = year + '-' + month + '-' + day;
+    $('#startDate').attr('min', maxDate);
+    $('#endDate').attr('min', maxDate);
+
+});
+
+   </script>
    </body>
 </html>
