@@ -7,13 +7,13 @@
         .table_deg {
             border: 2px solid white;
             margin: auto;
-            width: 100%;
+            width: 80%;
             text-align: center;
             margin-top: 40px;
         }
         .th_deg {
             background-color: skyblue;  
-            padding: 15px;      
+            padding: 8px;      
 
         }
 
@@ -49,6 +49,9 @@
                                 <th class="th_deg">Room Title</th>
                                 <th class="th_deg">Price</th>
                                 <th class="th_deg">Image</th>
+                                <th class="th_deg">Delete</th>
+                                <th class="th_deg">Status Update</th>
+
 
                         </tr>
                         @foreach($room as $room)
@@ -59,11 +62,32 @@
                             <td>{{$room->phone}}</td>
                             <td>{{$room->start_date}}</td>
                             <td>{{$room->end_date}}</td>
-                            <td>{{$room->status}}</td>
+                            <td>
+
+                              @if($room->status == 'In Progress')
+                                <span style="color: yellow;">{{$room->status}}</span>
+                              @endif
+
+                              @if($room->status == 'Approved')
+                                <span style="color: green;">{{$room->status}}</span>
+                              @endif
+
+                              @if($room->status == 'Rejected')
+                                <span style="color: red;">{{$room->status}}</span>
+                              @endif
+
+
+                            </td>
                             <td>{{$room->room->room_title}}</td>
                             <td>{{$room->room->price}}</td>
                             <td><img height="100" width="200" src="/room/{{$room->room->image}}"></td>
-
+                            <td><a class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this?')" href="{{url('delete_booking',$room->id)}}">Delete</a></td>
+                            <td>
+                              <span style = "padding-bottom: 10px;">
+                                <a class = "btn btn-success" href="{{url('approve_booking',$room->id)}}">Approve</a>
+                                <a class = "btn btn-warning" href="{{url('reject_booking',$room->id)}}">Reject</a>
+                              </span>
+                            </td>
                             
                         </tr>
                         @endforeach

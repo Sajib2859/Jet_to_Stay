@@ -150,4 +150,48 @@ class AdminController extends Controller
         }
     }
 
+    public function delete_booking($id)
+    {
+        $room = Booking::find($id);
+        if($room)
+        {
+            $room->delete();
+            return redirect()->back()->with('message', 'Booking Deleted Successfully');
+        }
+        else
+        {
+            return redirect()->back()->with('error', 'Booking Not Found');
+        }
+    }
+
+    public function approve_booking($id)
+    {
+        $room = Booking::find($id);
+        if($room)
+        {
+            $room->status = 'Approved';
+            $room->save();
+            return redirect()->back()->with('message', 'Booking Approved Successfully');
+        }
+        else
+        {
+            return redirect()->back()->with('error', 'Booking Not Found');
+        }
+    }
+
+    public function reject_booking($id)
+    {
+        $room = Booking::find($id);
+        if($room)
+        {
+            $room->status = 'Rejected';
+            $room->save();
+            return redirect()->back()->with('message', 'Booking Rejected Successfully');
+        }
+        else
+        {
+            return redirect()->back()->with('error', 'Booking Not Found');
+        }
+    }
+
 }

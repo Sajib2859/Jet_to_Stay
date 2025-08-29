@@ -31,3 +31,9 @@ route::get("/room_details/{id}", [HomeController::class,"room_details"])->name('
 route::post("/add_booking/{id}", [HomeController::class,"add_booking"])->name('add_booking');
 
 route::get("/bookings", [AdminController::class,"bookings"])->name('bookings');
+
+route::get("/delete_booking/{id}", [AdminController::class,"delete_booking"])->name('delete_booking');
+
+route::get("/approve_booking/{id}", [AdminController::class,"approve_booking"])->name('approve_booking');
+
+route::get("/reject_booking/{id}", [AdminController::class,"reject_booking"])->name('reject_booking');
