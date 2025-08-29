@@ -37,3 +37,9 @@ route::get("/delete_booking/{id}", [AdminController::class,"delete_booking"])->n
 route::get("/approve_booking/{id}", [AdminController::class,"approve_booking"])->name('approve_booking');
 
 route::get("/reject_booking/{id}", [AdminController::class,"reject_booking"])->name('reject_booking');
+
+route::get("/view_gallery", [AdminController::class,"view_gallery"])->name('view_gallery');
+
+route::post("/upload_image", [AdminController::class,"upload_image"])->name('upload_image');
+
+route::get("/delete_image/{id}", [AdminController::class,"delete_image"])->name('delete_image');

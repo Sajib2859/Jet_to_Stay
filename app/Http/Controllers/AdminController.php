@@ -12,6 +12,10 @@ use App\Models\Room;
 
 use App\Models\Booking;
 
+use App\Models\Gallery;
+
+
+
 class AdminController extends Controller
 {
     public function index()
@@ -191,6 +195,47 @@ class AdminController extends Controller
         else
         {
             return redirect()->back()->with('error', 'Booking Not Found');
+        }
+    }
+
+    public function view_gallery()
+    {
+        $gallery = Gallery::all();
+        return view('admin.gallery',compact('gallery'));
+    }
+
+    public function upload_image(Request $request)
+    {
+        $data = new Gallery();
+        $image = $request->image;
+
+        if($image)
+        {
+
+            $imagename = time().'.'.$image->getClientOriginalExtension();
+            $request->image->move('gallery', $imagename);
+            $data->image = $imagename;
+            $data->save();
+
+            return redirect()->back()->with('message', 'Image Uploaded Successfully');
+        }
+        else
+        {
+            return redirect()->back()->with('error', 'No Image Selected');
+        }
+    }
+
+    public function delete_image($id)
+    {
+        $image = Gallery::find($id);
+        if($image)
+        {
+            $image->delete();
+            return redirect()->back()->with('message', 'Image Deleted Successfully');
+        }
+        else
+        {
+            return redirect()->back()->with('error', 'Image Not Found');
         }
     }
 
