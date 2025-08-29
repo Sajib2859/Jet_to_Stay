@@ -29,3 +29,5 @@ route::post("/edit_room/{id}", [AdminController::class,"edit_room"])->name('edit
 route::get("/room_details/{id}", [HomeController::class,"room_details"])->name('room_details');
 
 route::post("/add_booking/{id}", [HomeController::class,"add_booking"])->name('add_booking');
+
+route::get("/bookings", [AdminController::class,"bookings"])->name('bookings');

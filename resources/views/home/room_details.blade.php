@@ -4,6 +4,8 @@
     <base href="/public">
       @include('home.css')
 
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
       <style type="text/css">
          label {
             display: inline-block;
@@ -74,6 +76,29 @@
 
                   <h1 style="font-size: 40px!important;">Book Room</h1>
 
+                  @if(session()->has('message'))
+
+                  <div class="alert alert-success">
+
+                     <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true">x</button>
+
+                     
+
+                  {{session()->get('message')}}
+
+                  </div>
+
+
+
+                  @endif
+
+                  @if(session()->has('error'))
+                     <div class="alert alert-danger">
+                           <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true">x</button>
+                  {{ session()->get('error') }}
+                     </div>
+                  @endif
+
                   @if($errors)
 
                   @foreach($errors->all() as $errors)
@@ -122,7 +147,7 @@
                      <input type="date" name="endDate" id="endDate" class="form-control">
                   </div>
                   <div style="padding-top: 30px;">
-                     <input type="submit" value="Book Now" class="btn btn-primary">
+                     <input type="submit" style="background-color: skyblue;" value="Book Now" class="btn btn-primary">
                   </div>
                   
                   </form>
@@ -176,5 +201,8 @@
 });
 
    </script>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
    </body>
 </html>

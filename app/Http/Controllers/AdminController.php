@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Room;
 
+use App\Models\Booking;
+
 class AdminController extends Controller
 {
     public function index()
@@ -128,6 +130,19 @@ class AdminController extends Controller
             $room->save();
 
             return redirect()->back()->with('message', 'Room Updated Successfully');
+        }
+        else
+        {
+            return redirect()->back()->with('error', 'Room Not Found');
+        }
+    }
+
+    public function bookings()
+    {
+        $room = Booking::all();
+        if($room)
+        {
+            return view('admin.booking', compact('room'));
         }
         else
         {
