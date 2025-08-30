@@ -44,4 +44,8 @@ route::post("/upload_image", [AdminController::class,"upload_image"])->name('upl
 
 route::get("/delete_image/{id}", [AdminController::class,"delete_image"])->name('delete_image');
 
+route::get("/contact", function() {
+    return view('home.contact_page');
+})->name('contact');
+
 route::post("/contact", [HomeController::class,"contact"])->name('contact');

@@ -22,19 +22,19 @@
                                  <a class="nav-link" href="{{url('/')}}">Home</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="about.html">About</a>
+                                 <a class="nav-link" href="#about">About</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="room.html">Our room</a>
+                                 <a class="nav-link" href="#room">Our room</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="gallery.html">Gallery</a>
+                                 <a class="nav-link" href="#gallery">Gallery</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="blog.html">Blog</a>
+                                 <a class="nav-link" href="#blog">Blog</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="contact.html">Contact Us</a>
+                                 <a class="nav-link" href="{{route('contact')}}">Contact Us</a>
                               </li>
 
 
