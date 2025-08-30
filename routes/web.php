@@ -49,3 +49,9 @@ route::get("/contact", function() {
 })->name('contact');
 
 route::post("/contact", [HomeController::class,"contact"])->name('contact');
+
+route::get("/all_messages", [AdminController::class,"all_messages"])->name('all_messages');
+
+route::get("/send_mail/{id}", [AdminController::class,"send_mail"])->name('send_mail');
+
+route::post("/mail/{id}", [AdminController::class,"mail"])->name('mail');
