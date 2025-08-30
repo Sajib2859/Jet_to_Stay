@@ -8,6 +8,8 @@ use App\Models\Room;
 
 use App\Models\Booking;
 
+use App\Models\Contact;
+
 class HomeController extends Controller
 {
     public function room_details($id)
@@ -76,5 +78,17 @@ class HomeController extends Controller
             return redirect()->route('room_details', ['id' => $id])->with('error', 'Booking failed');
         }
         }
+    }
+
+    public function contact(Request $request)
+    {
+        $data = new Contact();
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
+        $data->message = $request->message;
+        $data->save();
+
+        return redirect()->back()->with('message', 'Your message has been sent successfully!');
     }
 }

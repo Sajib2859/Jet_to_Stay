@@ -43,3 +43,5 @@ route::get("/view_gallery", [AdminController::class,"view_gallery"])->name('view
 route::post("/upload_image", [AdminController::class,"upload_image"])->name('upload_image');
 
 route::get("/delete_image/{id}", [AdminController::class,"delete_image"])->name('delete_image');
+
+route::post("/contact", [HomeController::class,"contact"])->name('contact');
